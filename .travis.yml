@@ -2,10 +2,11 @@ language: node_js
 node_js:
   - "4.1.1"
 before_install:
+  - "sudo apt-get update"
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 before_script:
   - "npm install -g gulp"
-  - "sudo apt-get -y -q install libav-tools"
+  - "sudo apt-get -y -q install --fix-missing libav-tools"
   - "export DISPLAY=:99.0"
   - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -vcodec libx264 -threads 4 $HOME/output.avi &"
 script: gulp
