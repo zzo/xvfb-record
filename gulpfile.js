@@ -19,4 +19,4 @@ gulp.task('test', function (done) {
 });
 
 gulp.task('record', [ 'start_record', 'test', 'stop_record' ]);
-gulp.task('default', ['record']);
+gulp.task('default', ['test']);
