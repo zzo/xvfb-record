@@ -8,5 +8,5 @@ before_script:
   - "npm install -g gulp"
   - "sudo apt-get -y -q install --fix-missing libav-tools"
   - "export DISPLAY=:99.0"
-  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -vcodec libx264 -threads 4 $HOME/output.avi &"
+  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
 script: gulp
