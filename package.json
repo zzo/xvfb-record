@@ -1,0 +1,32 @@
+{
+  "name": "xvfb-record",
+  "version": "1.0.0",
+  "description": "record a xvfb session",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp record"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzo/xvfb-record.git"
+  },
+  "author": "mark@zzo.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzo/xvfb-record/issues"
+  },
+  "homepage": "https://github.com/zzo/xvfb-record#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "x-recorder": "0.0.1"
+  },
+  "devDependencies": {
+    "gulp-karma": "0.0.4",
+    "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6"
+  }
+}
