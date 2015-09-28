@@ -10,3 +10,13 @@ before_script:
   - "export DISPLAY=:99.0"
   - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
 script: gulp
+after_script:
+  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.name "Travis"
+  - git init
+  - git remote add origin https://${GH_TOKEN}@github.com/zzo/zzo.github.io.git > /dev/null
+  - git checkout -B video
+  - cp $HOME/output.mpg .
+  - git add output.mpg
+  - git commit -m "video updated"
+  - git push origin video -fq > /dev/null
