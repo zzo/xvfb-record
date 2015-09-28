@@ -11,8 +11,8 @@ before_script:
   - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
 script: gulp
 after_script:
-  - git config --global user.email "travis@travis-ci.org"
-  - git config --global user.name "Travis"
+  - git config --global user.email "mark@zzo.com"
+  - git config --global user.name "Mark Ethan Trostler"
   - git init
   - git remote add origin https://${GH_TOKEN}@github.com/zzo/zzo.github.io.git > /dev/null
   - git checkout -B video
