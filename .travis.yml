@@ -3,5 +3,5 @@ node_js:
   - "4.1.1"
 before_script:
   - "npm install -g gulp"
-  - "sudo apt-get -y -q install --fix-missing libav-tools libavformat-dev libavcodec-dev"
+  - "sudo apt-get -y -q install libav-tools"
 script: gulp
