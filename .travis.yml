@@ -11,6 +11,7 @@ before_script:
   - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
 script: gulp
 after_script:
+  - export GH_TOKEN=edf8f71e6062474590f823ad7dea02894d502e63
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
   - mkdir gh-pages
