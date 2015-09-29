@@ -5,13 +5,16 @@ node_js:
 addons:
   apt:
     packages:
-#    - libav-tools
-#    - x11-apps
+    - libav-tools
+    - x11-apps
     - ffmpeg
   firefox: "38.0"
 before_install:
   - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
+  - xeyes &
+  - xclock &
+  - sleep 5
 before_script:
   - "npm install -g gulp"
 #  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
