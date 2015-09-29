@@ -13,7 +13,7 @@ before_install:
 - export DISPLAY=:99.0
 before_script:
 - npm install -g gulp
-- avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 -qscale 0 -vcodec huffyuv $HOME/output.mpg &
+- avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 -qscale 0 $HOME/output.mpg &
 script: gulp
 after_script:
 - sleep 20
