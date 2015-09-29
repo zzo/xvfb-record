@@ -14,10 +14,10 @@ before_install:
 before_script:
   - "npm install -g gulp"
 #  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
-  - "ffmpeg -video_size 1024x768 -framerate 25 -f x11grab -i :0.0 output.mp4 &"
+  - "ffmpeg -video_size 1024x768 -framerate 25 -f x11grab -i :99.0 output.mp4 &"
 script: gulp
 after_script:
-  - export GH_TOKEN=edf8f71e6062474590f823ad7dea02894d502e63
+#  - export GH_TOKEN=edf8f71e6062474590f823ad7dea02894d502e63
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
   - mkdir gh-pages
