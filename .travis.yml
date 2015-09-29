@@ -1,30 +1,34 @@
 sudo: false
 language: node_js
 node_js:
-  - "4.1.1"
+- 4.1.1
 addons:
   apt:
     packages:
     - libav-tools
-  firefox: "38.0"
+  firefox: '38.0'
 before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-  - export DISPLAY=:99.0
+- /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
+  --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+- export DISPLAY=:99.0
 before_script:
-  - "npm install -g gulp"
-  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
+- npm install -g gulp
+- avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &
 script: gulp
 after_script:
-  - sleep 20
-  - git config --global user.email "travis@travis-ci.org"
-  - git config --global user.name "Travis"
-  - mkdir gh-pages
-  - cd gh-pages
-  - git init
-  - git remote add origin https://${GH_TOKEN}@github.com/zzo/zzo.github.io.git > /dev/null
-  - git checkout -B gh-pages
-  - cp $HOME/output.mpg .
-  - git add output.mpg
-  - ls -l output.mpg
-  - git commit -m "video updated"
-  - git push origin gh-pages -fq > /dev/null
+- sleep 20
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis"
+- mkdir gh-pages
+- cd gh-pages
+- git init
+- git remote add origin https://${GH_TOKEN}@github.com/zzo/zzo.github.io.git > /dev/null
+- git checkout -B gh-pages
+- cp $HOME/output.mpg .
+- git add output.mpg
+- ls -l output.mpg
+- git commit -m "video updated"
+- git push origin gh-pages -fq > /dev/null
+env:
+  global:
+    secure: Th88HOepT0h2kIwVCAlJma8jAwVzj/o2e6GIJRc+9Zq7PIJfmBNCz9tH2GQxQZhvQRJtvu4TBU6QHXAoWegHKIa31p+I9h6VwN3z3jInFiXSJIuhBPnb9MtxtTVGi/AZ9z8ilaYno9rSlHifeKsFoWbTIHvvvmHXzYlwkNgNV0NMASG8YqyX6t2y8qjfULJJZNnSizzSz8Z8pKDRgb80wYNlPgQPFlLZ5ubdX2RFuzx2U4yECh3B9vJ5N3Efudx4GyDzrVaAK+mnhLv0LSvDgFuAoel9etdQjFtS5VosG/VZP+ICUhzh16MD7qm4NKHpwV1jbBRe/017xOJKCy7qdys5ZrP1U8R0ydQJ2dVDWCe83/4aNe7LTx3QgSQOy37hfD/TpoEFRYvSNn9RJ62xGD/F53ZLVkw1U9mlhcQKl3jCBflLnjl9f91M7wKnbV7ftg8uF5KzkGrvcpOMvX9GZWzxUeuxp5V52YGjBDb6VLNB5N9nQyOTY1T0nfausC1VARary5ewJn2p1KaiBgkYAP3cMhyomnr4o2Pm0KGXG8tLqdZTCVxQVpQXdqJmClbJtypLle4KFVKOrQ40El4SCjsPG8+weRqEJCVXwZqiVz3myLcejOHVxrweiaQRoU778i0afXQIKTQ+MXF+/qea9M02CcEiksKPL0Sl4nV+do0=
