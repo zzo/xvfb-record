@@ -1,14 +1,20 @@
+sudo: false
 language: node_js
 node_js:
   - "4.1.1"
+addons:
+  apt:
+    packages:
+#    - libav-tools
+#    - x11-apps
+    - ffmpeg
+  firefox: "38.0"
 before_install:
-  - "sudo apt-get update"
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - export DISPLAY=:99.0
 before_script:
   - "npm install -g gulp"
-  - "sudo apt-get -y -q install --fix-missing libav-tools"
-  - "export DISPLAY=:99.0"
-  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
+#  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
+  - "ffmpeg -video_size 1024x768 -framerate 25 -f x11grab -i :0.0 output.mp4 &"
 script: gulp
 after_script:
   - export GH_TOKEN=edf8f71e6062474590f823ad7dea02894d502e63
@@ -19,8 +25,8 @@ after_script:
   - git init
   - git remote add origin https://${GH_TOKEN}@github.com/zzo/zzo.github.io.git > /dev/null
   - git checkout -B gh-pages
-  - cp $HOME/output.mpg .
-  - git add output.mpg
-  - ls -l output.mpg
+  - cp $HOME/output.mp4 .
+  - git add output.mp4
+  - ls -l output.mp4
   - git commit -m "video updated"
   - git push origin gh-pages -fq > /dev/null
