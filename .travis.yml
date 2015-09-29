@@ -11,13 +11,14 @@ addons:
     - xdotool
   firefox: "38.0"
 before_install:
-  - sh -e /etc/init.d/xvfb start
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+#  - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
   - xdotool mousemove 100 200
 before_script:
   - "npm install -g gulp"
 #  - "avconv -f x11grab -r 25 -s 1280x1024 -i :99.0 -threads 4 $HOME/output.mpg &"
-  - "ffmpeg -video_size 1024x768 -framerate 25 -f x11grab -i :99.0 output.mp4 &"
+  - "ffmpeg -video_size 1280x1024 -framerate 25 -f x11grab -i :99.0 output.mp4 &"
 script: gulp
 after_script:
 #  - export GH_TOKEN=edf8f71e6062474590f823ad7dea02894d502e63
